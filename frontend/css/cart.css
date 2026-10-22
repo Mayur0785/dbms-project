@@ -1,0 +1,125 @@
+/* Shopping Cart Styles */
+
+.cart-item-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cart-item-title {
+    color: #222;
+    font-weight: 600;
+}
+
+.cart-item-unit {
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.cart-qty-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.qty-btn {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    background: #e0e0e0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: background-color 0.15s;
+}
+
+.qty-btn:hover:not(:disabled) {
+    background: #d5d5d5;
+}
+
+.qty-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.qty-input {
+    width: 55px;
+    height: 32px;
+    padding: 4px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.cart-footer-bar {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.cart-grand-total {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.cart-grand-total-val {
+    color: var(--primary-color);
+}
+
+.btn-checkout {
+    width: auto;
+    padding: 10px 24px;
+    font-size: 1rem;
+    display: inline-block;
+}
+
+.btn-remove {
+    width: auto;
+    padding: 6px 14px;
+    font-size: 0.85rem;
+}
+
+.btn-clear {
+    width: auto;
+    padding: 10px 18px;
+}
+
+.cart-empty-panel {
+    text-align: center;
+    padding: 50px 20px;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.cart-empty-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.cart-empty-panel p {
+    color: #666;
+    margin: 10px 0 20px;
+}
+
+.cart-login-prompt {
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}

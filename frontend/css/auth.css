@@ -1,0 +1,25 @@
+/* Authentication Styles (Login & Registration) */
+
+.auth-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    font-size: 1.6rem;
+}
+
+.auth-btn {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.auth-redirect-text {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-size: 0.95rem;
+}
+
+.auth-redirect-text a {
+    color: var(--primary-color);
+    font-weight: 600;
+}

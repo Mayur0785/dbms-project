@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Fresh Mart Grocery</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/checkout.css">
+    <script src="js/main.js" defer></script>
+    <script src="js/checkout.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">🛒 Fresh Mart Grocery</a>
+        </div>
+        <nav>
+            <ul id="nav-right"></ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2 class="page-title">Order Checkout</h2>
+
+        <div class="checkout-grid">
+            
+            <!-- Order Summary -->
+            <div class="checkout-box">
+                <h3 class="checkout-box-title">Order Summary</h3>
+                <div id="checkout-items" class="checkout-items-wrapper">
+                    <!-- Loaded dynamically by checkout.js -->
+                </div>
+                <div class="checkout-total-container">
+                    <span>Total Payable:</span>
+                    <span class="checkout-total-val" id="checkout-total">₹0.00</span>
+                </div>
+            </div>
+
+            <!-- Shipping & Payment Form -->
+            <div class="checkout-box">
+                <h3 class="checkout-box-title">Delivery & Payment Details</h3>
+                
+                <div id="checkout-alert"></div>
+
+                <form id="checkout-form">
+                    <div class="form-group">
+                        <label>Delivery Address</label>
+                        <textarea id="delivery_address" rows="3" required placeholder="Enter complete delivery address (House No, Street, Landmark, City, Pincode)"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Payment Method</label>
+                        <select id="payment_method" required>
+                            <option value="Cash on Delivery">Cash on Delivery (COD)</option>
+                            <option value="UPI">UPI (Google Pay / PhonePe / Paytm)</option>
+                        </select>
+                        <small class="checkout-help-note">For testing: COD marks status 'Pending', UPI marks status 'Completed'.</small>
+                    </div>
+
+                    <button type="submit" class="btn btn-secondary btn-place-order">Place Order Now</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Online Grocery Shopping & Management System | DBMS College Mini-Project</p>
+    </footer>
+
+</body>
+</html>

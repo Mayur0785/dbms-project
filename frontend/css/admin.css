@@ -1,0 +1,152 @@
+/* Admin Portal Styles */
+
+.tabs-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 0;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 15px;
+}
+
+.order-detail-card {
+    background: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.order-detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+.admin-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.admin-subtitle {
+    color: #666;
+    font-size: 0.88rem;
+}
+
+.admin-action-btn-group {
+    display: flex;
+    gap: 6px;
+}
+
+.btn-admin-action {
+    width: auto;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+}
+
+.btn-admin-view {
+    width: auto;
+    padding: 6px 12px;
+    font-size: 0.82rem;
+    white-space: nowrap;
+}
+
+.order-modal-header {
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.order-modal-header h2 {
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.order-modal-header small {
+    color: #666;
+}
+
+.modal-detail-footer {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #ddd;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 0.92rem;
+}
+
+.modal-status-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modal-order-total {
+    text-align: right;
+    font-size: 1.25rem;
+    font-weight: bold;
+    padding-top: 10px;
+    border-top: 2px solid #eee;
+}
+
+.modal-order-total span {
+    color: var(--primary-color);
+}
+
+.category-add-form {
+    display: flex;
+    gap: 10px;
+    max-width: 500px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.category-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 9px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.prod-form-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.prod-form-col {
+    flex: 1;
+    min-width: 120px;
+}
+
+@media (max-width: 600px) {
+    .order-detail-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200" width="300" height="200">
+  <rect width="100%" height="100%" fill="#f4f6f8"/>
+  <g transform="translate(100, 35)">
+    <circle cx="50" cy="50" r="45" fill="#e8f5e9"/>
+    <path d="M25 55 L75 55 L70 85 L30 85 Z" fill="#81c784" stroke="#2e7d32" stroke-width="2"/>
+    <circle cx="40" cy="45" r="10" fill="#e53935"/>
+    <circle cx="55" cy="42" r="12" fill="#fb8c00"/>
+    <circle cx="65" cy="47" r="9" fill="#43a047"/>
+  </g>
+  <text x="150" y="160" font-family="'Segoe UI', sans-serif" font-size="14" fill="#555555" font-weight="600" text-anchor="middle">Fresh Grocery Item</text>
+</svg>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Online Grocery System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <script src="js/main.js" defer></script>
+    <script src="js/auth.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">🛒 Fresh Mart Grocery</a>
+        </div>
+        <nav>
+            <ul id="nav-right"></ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="form-card">
+            <h2 class="auth-title">Customer / Admin Login</h2>
+            
+            <div id="alert-msg"></div>
+
+            <form id="login-form">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" required placeholder="rahul@gmail.com or admin@grocery.com">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" required placeholder="Enter password">
+                </div>
+                <button type="submit" class="btn auth-btn">Login</button>
+            </form>
+
+            <p class="auth-redirect-text">
+                Don't have an account? <a href="register.html">Register Here</a>
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Online Grocery Shopping & Management System | DBMS College Mini-Project</p>
+    </footer>
+
+</body>
+</html>

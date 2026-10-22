@@ -1,0 +1,16 @@
+{
+  "name": "online-grocery-system",
+  "version": "1.0.0",
+  "description": "Simple DBMS mini-project for Online Grocery Shopping and Management System",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node backend/server.js",
+    "seed": "node backend/seed.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "mysql2": "^3.6.5"
+  }
+}

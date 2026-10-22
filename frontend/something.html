@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>district | Discover your city</title>
+	<style>
+		:root { --ink:#101114; --muted:#74757b; --paper:#f7f7f5; --card:#fff; --line:#e7e7e3; --accent:#f6c945; --violet:#6258e8; }
+		* { box-sizing:border-box; }
+		body { margin:0; background:var(--paper); color:var(--ink); font-family:Arial, Helvetica, sans-serif; }
+		header { background:#101114; color:#fff; }
+		nav { min-height:72px; max-width:1240px; margin:auto; padding:0 28px; display:flex; align-items:center; gap:30px; }
+		.brand { color:#fff; text-decoration:none; font-size:27px; font-weight:900; letter-spacing:-1.8px; }
+		.brand span { color:var(--accent); }
+		nav a { color:#d7d7da; text-decoration:none; font-size:14px; white-space:nowrap; }
+		.city { color:#c9c9cc; border:0; background:transparent; font-size:13px; padding:10px 0; }
+		.city option { color:var(--ink); }
+		.nav-search { flex:1; max-width:430px; position:relative; margin-left:auto; }
+		.nav-search input { width:100%; border:1px solid #3d3e43; background:#232428; color:#fff; border-radius:6px; padding:12px 16px 12px 40px; outline:0; }
+		.search-icon { position:absolute; left:15px; top:12px; color:#b8b8bc; }
+		.hero { background:linear-gradient(90deg,rgba(10,10,12,.9),rgba(10,10,12,.18)), url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1800&q=85') center/cover; min-height:490px; display:flex; align-items:center; }
+		.hero-inner { width:min(1240px,100%); margin:auto; padding:70px 28px; color:#fff; }
+		.eyebrow { color:var(--accent); font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:2px; }
+		.hero h1 { max-width:650px; margin:17px 0 18px; font-size:clamp(44px,7vw,82px); letter-spacing:-4px; line-height:.94; }
+		.hero p { max-width:470px; color:#dedee0; font-size:18px; line-height:1.5; margin:0 0 28px; }
+		.button { border:0; border-radius:5px; padding:14px 22px; font-weight:800; background:var(--accent); color:var(--ink); }
+		.button.secondary { background:#fff; margin-left:8px; }
+		main { max-width:1240px; margin:auto; padding:52px 28px 80px; }
+		.section-head { display:flex; justify-content:space-between; align-items:end; gap:20px; margin:0 0 22px; }
+		h2 { font-size:28px; letter-spacing:-1px; margin:0; }
+		.section-head a { color:var(--violet); text-decoration:none; font-weight:700; font-size:14px; }
+		.categories { display:grid; grid-template-columns:repeat(6,1fr); gap:12px; margin-bottom:64px; }
+		.category { min-height:126px; border:0; border-radius:7px; text-align:left; padding:15px; display:flex; align-items:end; color:#fff; font-weight:800; font-size:16px; background:linear-gradient(145deg,#e85650,#7a2d62); }
+		.category:nth-child(2) { background:linear-gradient(145deg,#4ca3d5,#272d75); }
+		.category:nth-child(3) { background:linear-gradient(145deg,#f4b13b,#b63b34); }
+		.category:nth-child(4) { background:linear-gradient(145deg,#47a474,#15584f); }
+		.category:nth-child(5) { background:linear-gradient(145deg,#a68ce5,#3d2872); }
+		.category:nth-child(6) { background:linear-gradient(145deg,#de7c92,#76213e); }
+		.events { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+		.event { background:var(--card); border-radius:7px; overflow:hidden; border:1px solid var(--line); transition:transform .2s, box-shadow .2s; }
+		.event:hover { transform:translateY(-4px); box-shadow:0 14px 30px #00000012; }
+		.event-image { min-height:215px; display:flex; align-items:end; padding:18px; color:#fff; background-position:center; background-size:cover; }
+		.event:nth-child(1) .event-image { background-image:linear-gradient(0deg,#000a,transparent 65%),url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80'); }
+		.event:nth-child(2) .event-image { background-image:linear-gradient(0deg,#000a,transparent 65%),url('https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=80'); }
+		.event:nth-child(3) .event-image { background-image:linear-gradient(0deg,#000a,transparent 65%),url('https://images.unsplash.com/photo-1503095396549-807759245b35?auto=format&fit=crop&w=900&q=80'); }
+		.event-image strong { font-size:22px; }
+		.search-card { max-width:1180px; margin:-43px auto 0; position:relative; background:#fff; border-radius:18px; padding:24px; box-shadow:0 18px 45px #2820501a; }
+		.tabs { display:flex; gap:24px; border-bottom:1px solid var(--line); margin-bottom:20px; }
+		.tab { border:0; background:none; padding:0 0 13px; color:var(--muted); font-weight:700; cursor:pointer; }
+		.tab.active { color:var(--primary); border-bottom:3px solid var(--primary); }
+		.search-grid { display:grid; grid-template-columns:1fr 1fr 1fr .7fr auto; gap:12px; align-items:end; }
+		label { display:block; font-size:.73rem; font-weight:800; color:var(--muted); text-transform:uppercase; letter-spacing:.07em; margin:0 0 7px 4px; }
+		input, select { width:100%; padding:13px 12px; border:1px solid var(--line); border-radius:9px; background:#fff; color:var(--dark); font:inherit; outline:none; }
+		input:focus, select:focus { border-color:var(--primary); box-shadow:0 0 0 3px #5b4bdb18; }
+		button { font:inherit; cursor:pointer; }
+		.primary { border:0; border-radius:9px; padding:13px 22px; color:#fff; background:var(--primary); font-weight:750; transition:.2s; }
+		.primary:hover { background:#4738c0; transform:translateY(-1px); }
+		main { max-width:1180px; margin:42px auto; padding:0 20px; }
+		.section-heading { display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
+		h2 { margin:0; font-size:1.5rem; letter-spacing:-.03em; }
+		.section-heading span { color:var(--muted); font-size:.9rem; }
+		.events { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+		.event-info { padding:16px; }
+		.event-info h3 { margin:0 0 8px; font-size:1.05rem; }
+		.event-info p { color:var(--muted); font-size:.87rem; margin:5px 0; }
+		.event-bottom { display:flex; align-items:center; justify-content:space-between; margin-top:14px; }
+		.price { color:var(--violet); font-weight:800; }
+		.small-btn { border:1px solid #d9d6f5; background:#f8f7ff; color:var(--violet); border-radius:7px; padding:8px 12px; font-weight:700; }
+		.category:hover { outline:3px solid var(--accent); outline-offset:2px; }
+		.booking-panel { display:none; background:#fff; border-radius:16px; padding:25px; margin-top:34px; border:1px solid var(--line); }
+		.booking-panel.visible { display:block; }
+		.booking-layout { display:grid; grid-template-columns:1.1fr .9fr; gap:28px; }
+		.seats { display:grid; grid-template-columns:repeat(6,34px); gap:9px; margin:18px 0; }
+		.seat { width:34px; height:30px; border:0; border-radius:7px 7px 4px 4px; background:#e7e8f1; color:#68687b; font-size:.72rem; }
+		.seat.selected { background:var(--primary); color:#fff; }
+		.seat.occupied { background:#c9c9d3; color:#999; cursor:not-allowed; }
+		.legend { display:flex; gap:15px; color:var(--muted); font-size:.78rem; margin-bottom:20px; }
+		.dot { display:inline-block; width:11px; height:11px; border-radius:3px; background:#e7e8f1; margin-right:5px; vertical-align:-1px; }
+		.dot.sel { background:var(--primary); } .dot.busy { background:#c9c9d3; }
+		.summary { background:#fafaff; padding:20px; border-radius:12px; border:1px solid var(--line); }
+		.summary h3 { margin-top:0; } .row { display:flex; justify-content:space-between; margin:13px 0; color:var(--muted); }
+		.total { border-top:1px solid var(--line); padding-top:14px; font-weight:800; color:var(--dark); font-size:1.1rem; }
+		.about { display:grid; grid-template-columns:1.1fr .9fr; gap:40px; border-top:1px solid var(--line); margin-top:75px; padding-top:55px; }
+		.about p { color:var(--muted); line-height:1.7; max-width:600px; }
+		.about-list { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+		.about-item { background:#fff; border:1px solid var(--line); padding:20px; border-radius:6px; }
+		.about-item strong { display:block; font-size:24px; margin-bottom:5px; }
+		.about-item span { color:var(--muted); font-size:13px; }
+		footer { background:#101114; color:#aaa; padding:36px 28px; text-align:center; font-size:.85rem; }
+		footer span { margin-left:20px; }
+		.toast { position:fixed; right:20px; bottom:20px; background:#1c1d31; color:white; padding:14px 18px; border-radius:9px; display:none; box-shadow:0 8px 25px #0003; }
+		@media(max-width:850px) { nav { gap:15px; } nav a { display:none; } .categories { grid-template-columns:repeat(3,1fr); } .events { grid-template-columns:1fr; } .booking-layout,.about { grid-template-columns:1fr; } }
+		@media(max-width:540px) { nav { padding:0 16px; } .city { display:none; } .nav-search { max-width:none; } .hero-inner, main { padding-left:16px; padding-right:16px; } .hero { min-height:430px; } .hero h1 { letter-spacing:-2px; } .button { padding:13px 15px; } .categories { grid-template-columns:repeat(2,1fr); } .category { min-height:100px; } .section-head { align-items:start; flex-direction:column; gap:8px; } .booking-panel { padding:20px 14px; } footer span { display:block; margin:10px 0 0; } }
+	</style>
+</head>
+<body>
+	<header><nav><a class="brand" href="#top">district<span>.</span></a><select class="city" aria-label="Choose city"><option>Mumbai</option><option>Delhi NCR</option><option>Bengaluru</option><option>Pune</option></select><div class="nav-search"><span class="search-icon">/</span><input id="navSearch" type="search" placeholder="Search for events, venues or experiences"></div><a href="#events">Explore</a><a href="#about">About</a></nav></header>
+	<section class="hero" id="top"><div class="hero-inner"><div class="eyebrow">Your city. Your scene.</div><h1>Find your next great plan.</h1><p>From live music to big games and intimate theatre, discover the moments worth stepping out for.</p><a class="button" href="#events">Explore events</a><a class="button secondary" href="#categories">Browse categories</a></div></section>
+	<main>
+		<section id="categories"><div class="section-head"><h2>What are you in the mood for?</h2><a href="#events">See all</a></div><div class="categories"><button class="category" data-filter="Concerts">Music</button><button class="category" data-filter="Sports">Sports</button><button class="category" data-filter="Theatre">Theatre</button><button class="category" data-filter="Food">Food &amp; drink</button><button class="category" data-filter="Comedy">Comedy</button><button class="category" data-filter="Art">Art &amp; culture</button></div></section>
+		<section id="events"><div class="section-head"><h2>Popular near you</h2><a href="#events">Curated for Mumbai</a></div><div class="events">
+			<article class="event" data-category="Concerts" data-name="Live Waves Festival"><div class="event-image"><strong>Live Waves Festival</strong></div><div class="event-info"><h3>Live Waves Festival</h3><p>Riverside Arena · Sat, 18 May</p><p>Music and concerts</p><div class="event-bottom"><span class="price">From ₹899</span><button class="small-btn book-btn" data-event="Live Waves Festival" data-price="899">Book now</button></div></div></article>
+			<article class="event" data-category="Sports" data-name="City Football Finals"><div class="event-image"><strong>City Football Finals</strong></div><div class="event-info"><h3>City Football Finals</h3><p>Central Stadium · Sun, 26 May</p><p>Sports and live action</p><div class="event-bottom"><span class="price">From ₹599</span><button class="small-btn book-btn" data-event="City Football Finals" data-price="599">Book now</button></div></div></article>
+			<article class="event" data-category="Theatre" data-name="The Spotlight A Play"><div class="event-image"><strong>The Spotlight: A Play</strong></div><div class="event-info"><h3>The Spotlight: A Play</h3><p>Grand Theatre · Fri, 31 May</p><p>Theatre and arts</p><div class="event-bottom"><span class="price">From ₹749</span><button class="small-btn book-btn" data-event="The Spotlight: A Play" data-price="749">Book now</button></div></div></article>
+		</div></section>
+		<section class="booking-panel" id="booking"><div class="section-head"><h2 id="selectedEvent">Choose your seats</h2><span id="seatCount">0 selected</span></div><div class="booking-layout"><div><p>Screen / stage</p><div class="seats" id="seats"></div><div class="legend"><span><i class="dot"></i>Available</span><span><i class="dot sel"></i>Selected</span><span><i class="dot busy"></i>Occupied</span></div></div><div class="summary"><h3>Booking summary</h3><div class="row"><span>Tickets</span><strong id="ticketText">None</strong></div><div class="row"><span>Subtotal</span><strong id="subtotal">₹0</strong></div><div class="row"><span>Booking fee</span><strong id="fee">₹0</strong></div><div class="row total"><span>Total</span><strong id="total">₹0</strong></div><button class="primary" id="checkout" style="width:100%;margin-top:10px">Continue to payment</button></div></div></section>
+		<section class="about" id="about"><div><div class="eyebrow">More than a ticket</div><h2>Make time for the good stuff.</h2><p>district brings the best things happening around you into one simple place. Find a new favourite artist, take your friends out, or make a regular evening feel like an occasion.</p><p>Choose an event, pick your seats, and keep your plans moving. This demo is ready for a real booking API when you connect it to your database.</p></div><div class="about-list"><div class="about-item"><strong>3</strong><span>Curated events</span></div><div class="about-item"><strong>30</strong><span>Seats per show</span></div><div class="about-item"><strong>4.8/5</strong><span>Average experience</span></div><div class="about-item"><strong>24/7</strong><span>Plans worth making</span></div></div></section>
+	</main>
+	<footer id="help">district. Discover your city. <span>Made for your next plan · © 2026</span></footer><div class="toast" id="toast"></div>
+	<script>
+		const seatsEl = document.getElementById('seats'), panel = document.getElementById('booking'); let selected = [], currentPrice = 0; const occupied = [3, 8, 14, 19, 25, 29];
+		for (let index = 1; index <= 30; index += 1) { const seat = document.createElement('button'); seat.className = 'seat' + (occupied.includes(index) ? ' occupied' : ''); seat.textContent = index; seat.disabled = occupied.includes(index); seat.onclick = () => { seat.classList.toggle('selected'); selected = [...document.querySelectorAll('.seat.selected')].map(item => item.textContent); updateSummary(); }; seatsEl.appendChild(seat); }
+		function updateSummary() { const subtotal = selected.length * currentPrice, fee = selected.length ? 49 : 0; document.getElementById('seatCount').textContent = selected.length + ' selected'; document.getElementById('ticketText').textContent = selected.length ? selected.join(', ') : 'None'; document.getElementById('subtotal').textContent = '₹' + subtotal; document.getElementById('fee').textContent = '₹' + fee; document.getElementById('total').textContent = '₹' + (subtotal + fee); }
+		document.querySelectorAll('.book-btn').forEach(button => button.onclick = () => { currentPrice = Number(button.dataset.price); selected = []; document.querySelectorAll('.seat.selected').forEach(seat => seat.classList.remove('selected')); document.getElementById('selectedEvent').textContent = button.dataset.event; panel.classList.add('visible'); updateSummary(); panel.scrollIntoView({ behavior:'smooth', block:'center' }); });
+		function showToast(message) { const toast = document.getElementById('toast'); toast.textContent = message; toast.style.display = 'block'; setTimeout(() => toast.style.display = 'none', 2800); }
+		document.getElementById('checkout').onclick = () => selected.length ? showToast('Your seats are reserved. Payment integration is ready to connect.') : showToast('Please select at least one seat.');
+		function filterEvents(value) { const query = value.trim().toLowerCase(); document.querySelectorAll('.event').forEach(event => { event.style.display = !query || event.dataset.name.toLowerCase().includes(query) || event.dataset.category.toLowerCase().includes(query) ? '' : 'none'; }); }
+		document.getElementById('navSearch').oninput = event => filterEvents(event.target.value); document.querySelectorAll('.category').forEach(category => category.onclick = () => { filterEvents(category.dataset.filter); document.getElementById('events').scrollIntoView({ behavior:'smooth' }); });
+	</script>
+</body>
+</html>

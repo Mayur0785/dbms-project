@@ -1,0 +1,46 @@
+/* Product Catalog & Featured Products Styles */
+
+.hero-cta {
+    width: auto;
+    padding: 12px 28px;
+    font-size: 1rem;
+    display: inline-block;
+}
+
+.product-desc {
+    color: #666;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    min-height: 2.8em;
+}
+
+.stock-indicator {
+    font-size: 0.82rem;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.stock-in {
+    color: #2e7d32;
+}
+
+.stock-out {
+    color: #d32f2f;
+}
+
+.btn-out-of-stock {
+    background: #bbb !important;
+    cursor: not-allowed !important;
+}
+
+.empty-catalog-msg {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px 20px;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    color: #555;
+    font-size: 1.05rem;
+}

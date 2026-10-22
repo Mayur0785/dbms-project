@@ -1,0 +1,117 @@
+/* Customer Order History Styles */
+
+.order-card {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px;
+    margin-bottom: 25px;
+    border: 1px solid #e0e0e0;
+}
+
+.order-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 12px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.order-id-title {
+    font-size: 1.15rem;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.order-date-meta {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 3px;
+}
+
+.order-time-spacer {
+    margin-left: 10px;
+}
+
+.order-details-banner {
+    background: #fafafa;
+    padding: 12px 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #444;
+    border-left: 4px solid var(--primary-color);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between;
+}
+
+.payment-status-tag {
+    font-weight: 600;
+}
+
+.payment-completed {
+    color: #2e7d32;
+}
+
+.payment-pending {
+    color: #f57c00;
+}
+
+.order-items-table-wrapper {
+    margin-bottom: 10px;
+}
+
+.order-item-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.order-thumb {
+    width: 40px;
+    height: 40px;
+}
+
+.order-total-summary {
+    text-align: right;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px dashed #eee;
+}
+
+.order-total-val {
+    color: var(--primary-color);
+}
+
+.orders-empty-box {
+    text-align: center;
+    padding: 50px 20px;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.orders-empty-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.orders-empty-box p {
+    color: #666;
+    margin: 10px 0 20px 0;
+}
+
+.orders-login-prompt {
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
