@@ -20,6 +20,8 @@ Thumbs.db
 frontend/.react_src_backup/
 frontend/dist/
 dist/
+database/*.json
+database/archive/backup-mysql.js
 
 # IDE files
 .idea/

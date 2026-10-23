@@ -9,8 +9,9 @@
     "seed": "node backend/seed.js"
   },
   "dependencies": {
+    "dotenv": "^18.0.9",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
-    "mysql2": "^3.6.5"
+    "mongoose": "^9.11.3"
   }
 }

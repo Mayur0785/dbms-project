@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db');
+const Product = require('../models/Product');
+const User = require('../models/User');
+const Order = require('../models/Order');
 
 // Middleware: Admin check
 const isAdmin = (req, res, next) => {
@@ -10,16 +12,20 @@ const isAdmin = (req, res, next) => {
     next();
 };
 
-// Admin Dashboard Summary Cards & DBMS Viva Queries
+// Admin Dashboard Summary Cards & Aggregation Queries
 router.get('/dashboard', isAdmin, async (req, res) => {
     try {
-        // Summary Counts
-        const [[{ totalProducts }]] = await db.query('SELECT COUNT(*) AS totalProducts FROM products');
-        const [[{ totalCustomers }]] = await db.query('SELECT COUNT(*) AS totalCustomers FROM users WHERE role = "customer"');
-        const [[{ totalOrders }]] = await db.query('SELECT COUNT(*) AS totalOrders FROM orders');
-        
-        // DBMS Query: Calculate total sales (SUM)
-        const [[{ totalSales }]] = await db.query('SELECT IFNULL(SUM(total_amount), 0) AS totalSales FROM orders WHERE order_status != "Cancelled"');
+        const totalProducts = await Product.countDocuments();
+        const totalCustomers = await User.countDocuments({ role: 'customer' });
+        const totalOrders = await Order.countDocuments();
+
+        // Calculate total sales using MongoDB aggregation pipeline (excluding Cancelled orders)
+        const salesAgg = await Order.aggregate([
+            { $match: { order_status: { $ne: 'Cancelled' } } },
+            { $group: { _id: null, totalSales: { $sum: '$total_amount' } } }
+        ]);
+
+        const totalSales = salesAgg.length > 0 ? parseFloat(salesAgg[0].totalSales) : 0;
 
         res.json({
             success: true,
@@ -27,7 +33,7 @@ router.get('/dashboard', isAdmin, async (req, res) => {
                 totalProducts,
                 totalCustomers,
                 totalOrders,
-                totalSales: parseFloat(totalSales)
+                totalSales
             }
         });
     } catch (err) {

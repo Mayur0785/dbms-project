@@ -43,13 +43,12 @@ app.get('*', (req, res) => {
 app.listen(PORT, async () => {
     console.log(`===================================================`);
     console.log(`Online Grocery Management System Server Running!`);
-    console.log(`Database: MySQL (grocery_db)`);
+    console.log(`Database: MongoDB Atlas (grocery_db)`);
     console.log(`URL: http://localhost:${PORT}`);
     console.log(`===================================================`);
     try {
-        await db.query('SELECT 1');
-        console.log('[MySQL Connected Successfully]');
+        await db.connectDB();
     } catch (err) {
-        console.error('[MySQL Connection Warning]:', err.message);
+        console.error('[MongoDB Startup Warning]:', err.message);
     }
 });

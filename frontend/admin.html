@@ -53,7 +53,7 @@
             <div class="admin-header-row">
                 <div>
                     <h3 style="color: var(--primary-color);">Customer Orders Management</h3>
-                    <p class="admin-subtitle">Complete records retrieved via SQL JOIN across orders, users, payments, and order_items.</p>
+                    <p class="admin-subtitle">Complete records retrieved via MongoDB Atlas populated document references across orders, users, payments, and embedded items.</p>
                 </div>
                 <button class="btn btn-admin-action" onclick="loadAdminData()">🔄 Refresh Orders</button>
             </div>
@@ -84,7 +84,7 @@
             <div class="admin-header-row">
                 <div>
                     <h3 style="color: var(--primary-color);">Grocery Product Inventory</h3>
-                    <p class="admin-subtitle">CRUD operations connected directly to the MySQL products table.</p>
+                    <p class="admin-subtitle">CRUD operations connected directly to the MongoDB products collection.</p>
                 </div>
                 <button class="btn btn-secondary btn-admin-action" onclick="openProductModal()">+ Add New Product</button>
             </div>

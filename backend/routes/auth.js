@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../db');
+const User = require('../models/User');
+const Cart = require('../models/Cart');
 
 // 1. User Registration
 router.post('/register', async (req, res) => {
@@ -11,20 +12,39 @@ router.post('/register', async (req, res) => {
             return res.status(400).json({ success: false, message: 'All fields are required' });
         }
 
+        const normalizedEmail = email.trim().toLowerCase();
+
         // Check if user already exists
-        const [existing] = await db.query('SELECT user_id FROM users WHERE email = ?', [email]);
-        if (existing.length > 0) {
+        const existing = await User.findOne({ email: normalizedEmail });
+        if (existing) {
             return res.status(400).json({ success: false, message: 'Email is already registered' });
         }
 
+        // Generate next auto-increment integer ID for backwards compatibility
+        const lastUser = await User.findOne().sort({ user_id: -1 }).select('user_id');
+        const nextUserId = (lastUser && lastUser.user_id) ? lastUser.user_id + 1 : 1;
+
         // Insert new customer user
-        const [result] = await db.query(
-            'INSERT INTO users (name, email, password, phone, address, role) VALUES (?, ?, ?, ?, ?, "customer")',
-            [name, email, password, phone, address]
-        );
+        const newUser = await User.create({
+            user_id: nextUserId,
+            name: name.trim(),
+            email: normalizedEmail,
+            password: password,
+            phone: phone.trim(),
+            address: address.trim(),
+            role: 'customer'
+        });
 
         // Automatically create a cart for the new user
-        await db.query('INSERT INTO cart (user_id) VALUES (?)', [result.insertId]);
+        const lastCart = await Cart.findOne().sort({ cart_id: -1 }).select('cart_id');
+        const nextCartId = (lastCart && lastCart.cart_id) ? lastCart.cart_id + 1 : 1;
+
+        await Cart.create({
+            cart_id: nextCartId,
+            user: newUser._id,
+            user_id: newUser.user_id,
+            items: []
+        });
 
         res.json({ success: true, message: 'Registration successful! Please login.' });
     } catch (err) {
@@ -42,13 +62,13 @@ router.post('/login', async (req, res) => {
             return res.status(400).json({ success: false, message: 'Please provide email and password' });
         }
 
-        const [users] = await db.query('SELECT * FROM users WHERE email = ? AND password = ?', [email, password]);
+        const normalizedEmail = email.trim().toLowerCase();
+        const user = await User.findOne({ email: normalizedEmail, password: password });
 
-        if (users.length === 0) {
+        if (!user) {
             return res.status(401).json({ success: false, message: 'Invalid email or password' });
         }
 
-        const user = users[0];
         req.session.user = {
             user_id: user.user_id,
             name: user.name,

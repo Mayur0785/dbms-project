@@ -1,15 +1,44 @@
-const mysql = require('mysql2');
+const path = require('path');
+const dns = require('dns');
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
 
-// Create MySQL Connection Pool
-const pool = mysql.createPool({
-    host: process.env.DB_HOST || 'localhost',
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || 'Mayur@07',
-    database: process.env.DB_NAME || 'grocery_db',
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
-});
+// Configure reliable DNS servers for MongoDB Atlas SRV lookup
+try {
+    dns.setServers(['8.8.8.8', '1.1.1.1']);
+} catch (_) {}
 
-// Export promise-based pool for clean async/await usage
-module.exports = pool.promise();
+// Load environment variables from backend/.env or root .env
+const envPaths = [
+    path.join(__dirname, '.env'),
+    path.join(__dirname, '../.env'),
+    path.join(process.cwd(), 'backend/.env'),
+    path.join(process.cwd(), '.env')
+];
+for (const envPath of envPaths) {
+    dotenv.config({ path: envPath });
+    if (process.env.MONGODB_URI) break;
+}
+
+// MongoDB Atlas Connection
+async function connectDB() {
+    try {
+        const uri = process.env.MONGODB_URI;
+        if (!uri) {
+            throw new Error('MONGODB_URI environment variable is not defined in backend/.env');
+        }
+        await mongoose.connect(uri, {
+            serverSelectionTimeoutMS: 15000
+        });
+        console.log(`[MongoDB Connected Successfully: ${mongoose.connection.name}]`);
+        return mongoose.connection;
+    } catch (err) {
+        console.error('[MongoDB Connection Error]:', err.message);
+        throw err;
+    }
+}
+
+module.exports = {
+    connectDB,
+    mongoose
+};
