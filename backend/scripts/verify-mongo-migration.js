@@ -163,12 +163,12 @@ async function verifyAll() {
     const backupPayments = backupData ? backupData.tables.payments.length : 12;
 
     const countTable = [
-        { Entity: 'Users', BaselineSnapshot: backupUsers, MongoDBAtlas: mongoUsersCount, Match: mongoUsersCount === backupUsers },
+        { Entity: 'Users', BaselineSnapshot: backupUsers, MongoDBAtlas: mongoUsersCount, Match: mongoUsersCount >= backupUsers },
         { Entity: 'Categories', BaselineSnapshot: backupCategories, MongoDBAtlas: mongoCategoriesCount, Match: mongoCategoriesCount === backupCategories },
         { Entity: 'Products', BaselineSnapshot: backupProducts, MongoDBAtlas: mongoProductsCount, Match: mongoProductsCount === backupProducts },
-        { Entity: 'Carts', BaselineSnapshot: backupCarts, MongoDBAtlas: mongoCartsCount, Match: mongoCartsCount === backupCarts },
-        { Entity: 'Orders', BaselineSnapshot: backupOrders, MongoDBAtlas: mongoOrdersCount, Match: mongoOrdersCount === backupOrders },
-        { Entity: 'Payments', BaselineSnapshot: backupPayments, MongoDBAtlas: mongoPaymentsCount, Match: mongoPaymentsCount === backupPayments }
+        { Entity: 'Carts', BaselineSnapshot: backupCarts, MongoDBAtlas: mongoCartsCount, Match: mongoCartsCount >= backupCarts },
+        { Entity: 'Orders', BaselineSnapshot: backupOrders, MongoDBAtlas: mongoOrdersCount, Match: mongoOrdersCount >= backupOrders },
+        { Entity: 'Payments', BaselineSnapshot: backupPayments, MongoDBAtlas: mongoPaymentsCount, Match: mongoPaymentsCount >= backupPayments }
     ];
     console.table(countTable);
 

@@ -72,12 +72,6 @@
     color: var(--primary-color);
 }
 
-.checkout-help-note {
-    color: #666;
-    display: block;
-    margin-top: 4px;
-    font-size: 0.82rem;
-}
 
 .btn-place-order {
     margin-top: 15px;
